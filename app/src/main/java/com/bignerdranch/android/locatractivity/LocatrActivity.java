@@ -1,0 +1,38 @@
+package com.bignerdranch.android.locatractivity;
+
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+public class LocatrActivity extends SingleFragmentActivity {
+
+    private static final int REQUEST_ERROR = 0;
+
+    @Override
+    protected Fragment createFragment() {
+        return LocatrFragment.newInstance();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        int errorCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+
+        if (errorCode != ConnectionResult.SUCCESS) {
+            Dialog errorDialog = GooglePlayServicesUtil
+                    .getErrorDialog(errorCode, this, REQUEST_ERROR,
+                            new DialogInterface.OnCancelListener() {
+                                public void onCancel(DialogInterface dialog) {
+                                    finish();
+                                }
+                            });
+
+            errorDialog.show();
+        }
+
+    }
+}
