@@ -11,6 +11,8 @@ public class GalleryItem {
     private String url_s;
     private String owner;
     private Uri link;
+    private double latitude;
+    private double longitude;
 
     @Override
     public String toString() {
@@ -34,6 +36,13 @@ public class GalleryItem {
 
     public String getOwner() { return owner; }
     public void setOwner(String owner) { this.owner = owner; }
+
+    public double getLatitude() { return latitude; }
+    public void setLatitude(double lat) { latitude = lat; }
+
+    public double getLongitude() { return longitude; }
+    public void setLongitude(double lon) { longitude = lon; }
+
 
     public Uri getPhotoPageUri() {
         link = Uri.parse("http://www.flickr.com/photos/")
